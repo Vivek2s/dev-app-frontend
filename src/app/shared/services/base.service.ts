@@ -7,7 +7,6 @@ import { CookieService } from './cookie.service';
 export class BaseService {
 	token: any;
 	protected _url = environment.API;
-	protected _intercomUrl = 'https://api.intercom.io';
 	protected bae64EncodeToken = btoa(environment.CLIENT_ID + ':' + environment.CLIENT_SECRET);
 	protected headers: any;
 	protected options: any;

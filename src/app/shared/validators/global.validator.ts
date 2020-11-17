@@ -26,15 +26,6 @@ export class GlobalValidator {
     return { 'match': true };
   }
 
-  static phoneFormat(control: AbstractControl): ValidationResult {
-    const PHONE_REGEXP: RegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i;
-    if (control.value !== '' && !PHONE_REGEXP.test(control.value)) {
-      return { 'phoneFormat': true };
-    }
-
-    return null;
-  }
-
   static emailFormatInput(email) {
 
     const EMAIL_REGEXP: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
@@ -47,10 +38,11 @@ export class GlobalValidator {
     return null;
   }
 
-  static phoneFormatCheck(phone) {
-    const PHONE_REGEXP: RegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i;
-    if (phone !== '' && !PHONE_REGEXP.test(phone)) {
-      return true;
+  static passwordFormatCheck(control): ValidationResult {
+    const PWD_REGEXP: RegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/i;
+
+    if ( control.touched && !PWD_REGEXP.test(control.value)) {
+       return { 'pwdFormat': true };;
     }
 
     return null;
@@ -65,36 +57,4 @@ export class GlobalValidator {
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
   }
-
-  static numberCheckValidator(control): ValidationResult {
-    let val = Number(control.value);
-
-    return isNaN(val) ? { 'numberInvalid': true } : null;
-  }
-
-  // static accountInput(country, accountNumber) {
-  //   let accountNumberRegEx;
-  //   // if (country == 'india') {
-  //   accountNumberRegEx = /^[0-9]{9,18}$/;
-  //   // }
-  //   if (!accountNumberRegEx.test(accountNumber))
-  //     return true;
-  //   return null;
-  // }
-
-  // static ifscInput(country, ifscCode) {
-  //   let ifscRegEx;
-  //   ifscRegEx = /^[A-Z]{4}0[A-Z0-9]{6}$/;
-  //   if (!ifscRegEx.test(ifscCode))
-  //     return true;
-  //   return null;
-  // }
-
-  // static panInput(country, panNumber) {
-  //   let panNumberRegEx
-  //   panNumberRegEx = /[A-Z]{5}[0-9]{4}[A-Z]{1}/;
-  //   if (!panNumberRegEx.test(panNumber))
-  //     return true;
-  //   return null;
-  // }
 }

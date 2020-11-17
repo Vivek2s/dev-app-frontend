@@ -5,6 +5,9 @@ import { Routes, RouterModule } from '@angular/router'
 import { SiteComponent } from './site.component';
 import { CookieService } from '../shared/services/cookie.service';
 import { ScriptService } from '../shared/services/script.service';
+import { SignupLoginService } from '../shared/services/signup-login.service';
+import { LoginGuard } from '../shared/guards/login.guard';
+import { AuthGuard } from './../shared/guards/auth.guard';
 
 export const BOOT_ROUTES: Routes = [
   {
@@ -13,7 +16,13 @@ export const BOOT_ROUTES: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/site/home/home.module').then(m => m.HomeModule)
+        loadChildren: () => import('src/app/site/home/home.module').then(m => m.HomeModule),
+        canActivate: [LoginGuard]
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('src/app/site/profile/profile.module').then(m => m.ProfileModule),
+        canActivate: [AuthGuard]
       },
       {
         path:'**',
@@ -30,6 +39,6 @@ export const BOOT_ROUTES: Routes = [
     RouterModule.forChild(BOOT_ROUTES)
   ],
   declarations: [SiteComponent],
-  providers:[,CookieService,ScriptService]
+  providers:[SignupLoginService,CookieService,ScriptService]
 })
 export class SiteModule { }

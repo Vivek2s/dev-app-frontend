@@ -18,7 +18,7 @@ export class CookieService {
 	setshowUnideadline(a) {
 		this.showUnideadline = a;
 	}
-	createCookie(name: string, value: any, expireTime: number, type = null,role=null,encode = false) {
+	createCookie(name: string, value: any, expireTime: number, type = null, encode=false) {
 		let expires = '';
 
 		if (expireTime) {
@@ -36,19 +36,11 @@ export class CookieService {
 		}
 		// if (encode) value = compressToBase64(JSON.stringify(value));
 		// else value = JSON.stringify(value);
-		if (name == 'storage' || name == 'premium-account' || encode) {
+		if (name == 'storage' || encode) {
 			if (name == 'storage' && value && value.user) value.user.student_details = '';
 			value = compressToBase64(JSON.stringify(value));
 		} else value = JSON.stringify(value);
-
-		// for changing domain
-		let host = location.host;
-		let domainParts = host.split('.');
-		domainParts.shift();
-		let domain = '.' + domainParts.join('.');
-		// let domain = location.host
-		// domain=' + domain
-		document.cookie = name + '=' + value + expires + '; path=/; domain=' + domain;
+		document.cookie = name + '=' + value + expires;
 	}
 
 	readCookie(name: string, decode = false) {

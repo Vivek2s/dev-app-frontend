@@ -1,10 +1,17 @@
-<div class="login slide-up" id="login-form">
+<div class="login slide-up" id="login-form" [formGroup]="loginForm" autocomplete="off" >
     <div class="center">
         <h2 class="form-title" id="login" (click)="login()"><span>or</span>Log in</h2>
         <div class="form-holder">
-            <input type="email" class="input" placeholder="Email" />
-            <input type="password" class="input" placeholder="Password" />
+            <input type="email" class="input" placeholder="Email" formControlName="username" />
+            <input type="password" class="input" placeholder="Password" formControlName="password"/>
+
+            <ng-container>
+                <input id="email" style="display:none"
+                    type="text" name="fakeusernameremembered">
+                <input id="password" style="display:none"
+                    type="password" name="fakepasswordremembered">
+            </ng-container>
         </div>
-        <button class="submit-btn">Log in</button>
+        <button class="submit-btn"  (click)="onLogin()">Log in</button>
     </div>
 </div>
