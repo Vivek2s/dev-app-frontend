@@ -1,4 +1,4 @@
-<div class="signup" id="signup-form" [formGroup]="registerForm" autocomplete="off">
+<div class="signup slide-up" id="signup-form" [formGroup]="registerForm" autocomplete="off">
     <h2 class="form-title" id="signup" (click)="signup()"><span>or</span>Sign up</h2>
     <div class="form-holder">
         <input type="email" class="input" placeholder="Email" formControlName="username"/>
@@ -7,5 +7,5 @@
             <input type="password" class="input" placeholder="Password" formControlName="confirmPassword"/>
         </ng-container>
     </div>
-    <button class="submit-btn" [disabled]="isDisabled" (click)="onSignup()">Sign up</button>
+    <button class="submit-btn" [ngClass]="{'progress': isDisabled}" [disabled]="isDisabled" (click)="onSignup()">Sign up</button>
 </div>

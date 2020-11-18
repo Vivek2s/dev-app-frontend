@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
 				if (error.error == 403 && !regex.test(error.error_description)) this.isResendError = true;
 				this.errorData = error;
 				this.errorMessage = error.error_description;
-
+				console.log("erroror", error);
 				window.toastNotification(this.errorMessage);
 				this.isError = true;
 			}

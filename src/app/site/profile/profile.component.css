@@ -1,3 +1,25 @@
+.submit-btn {
+  background-color: #6B92A4;
+  color: rgba(256,256,256,0.7);
+  border:0;
+  border-radius: 15px;
+  display: block;
+  margin: 15px auto; 
+  padding: 15px 45px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all .3s ease;
+}
+
+.submit-btn:hover {
+  transition: all .3s ease;
+  background-color: rgba(0,0,0,0.8);
+}
+
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     /* max-width: 300px; */

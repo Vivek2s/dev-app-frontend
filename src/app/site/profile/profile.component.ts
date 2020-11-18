@@ -10,6 +10,7 @@ declare var jQuery, $, window;
 export class ProfileComponent {
 	// vraibles start
 	user:any;
+	isDisabled = false;
 	constructor(
 		private _cookieService: CookieService,
 		private _router: Router
@@ -24,8 +25,9 @@ export class ProfileComponent {
 	}
 
 	logout(){
+		this.isDisabled = true;
 		this._cookieService.eraseCookie(['storage']);
-        // this._cookieService.editDomainCookie('storage') // for clearing domain cookie
-        this._router.navigate(['/login']);
+		this._router.navigate(['/login']);
+		this.isDisabled = false;;
 	}
 }
