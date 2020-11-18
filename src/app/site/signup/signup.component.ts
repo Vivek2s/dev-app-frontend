@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
 	}
 
 	getError(){
-		let message = "Please fill up all the fiels";
+		let message = "Please fill up all the fields";
 		if(this.registerForm.get('username').touched &&
 			!this.registerForm.get('username').valid &&
 			!this.registerForm.get('username').errors?.emailFormat){
@@ -124,9 +124,7 @@ export class SignupComponent implements OnInit {
 	
 	// sending request to register a user
 	async successLoginReq(response) {
-		console.log(response);
 		try {
-			// let uuid = UUID.UUID();
 			let cookie = {
 				token: response.access_token,
 				user: response.user

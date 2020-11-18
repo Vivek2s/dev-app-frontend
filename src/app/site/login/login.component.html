@@ -12,6 +12,6 @@
                     type="password" name="fakepasswordremembered">
             </ng-container>
         </div>
-        <button class="submit-btn"  (click)="onLogin()">Log in</button>
+        <button class="submit-btn"  [disabled]="isDisabled" (click)="onLogin()">Log in</button>
     </div>
 </div>

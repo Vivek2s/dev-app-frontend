@@ -7,5 +7,5 @@
             <input type="password" class="input" placeholder="Password" formControlName="confirmPassword"/>
         </ng-container>
     </div>
-    <button class="submit-btn" (click)="onSignup()">Sign up</button>
+    <button class="submit-btn" [disabled]="isDisabled" (click)="onSignup()">Sign up</button>
 </div>
