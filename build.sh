@@ -2,13 +2,13 @@ git pull
 
 git commit -am "Building Home Page"
 
-prod='unirely-build-homepage'
+prod='dev-app-live'
 
 
 echo "**************************************************** $1 ***********************"
 if [ "$1" = "prod" ]
 then 
-    ng build --prod --aot --output-hashing=none --build-optimizer
+    ng build --prod --aot --output-hashing=none --build-optimizer --base-href=https://vivek2s.github.io/dev-app-live/
     dir=$prod
 fi
 
@@ -24,7 +24,7 @@ then
 
     cd ../$dir
 
-    git add . && git commit -am "Build homepage"
+    git add . && git commit -am "Build DevApp"
 
     git push origin master
 else
