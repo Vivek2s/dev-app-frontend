@@ -35,15 +35,9 @@ testem.log
 Thumbs.db
 
 #environment files.
-src/environments/*.ts
 src/environments/*.js
 src/environments/*.map
 
-#robots
-src/robots.txt
-
-#sitemap
-src/sitemap.xml
 
 typings
 app/**/*.js
