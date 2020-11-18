@@ -44,8 +44,8 @@ export class SignupComponent implements OnInit {
 			username: [ '', Validators.compose([ Validators.required, GlobalValidator.emailFormat ]) ],
 			passwordGroup: this._fb.group(
 				{
-					password: [ '', Validators.compose([Validators.required, GlobalValidator.noWhitespaceValidator, GlobalValidator.passwordFormatCheck]) ],
-					confirmPassword: [ '', Validators.compose([Validators.required, GlobalValidator.noWhitespaceValidator, GlobalValidator.passwordFormatCheck]) ]
+					password: [ '', [Validators.required, GlobalValidator.noWhitespaceValidator, GlobalValidator.passwordFormatCheck] ],
+					confirmPassword: [ '', [Validators.required, GlobalValidator.noWhitespaceValidator, GlobalValidator.passwordFormatCheck] ]
 				},
 				{ validator: GlobalValidator.passwordCompared }
 			)
@@ -54,31 +54,34 @@ export class SignupComponent implements OnInit {
 
 	getError(){
 		let message = "Please fill up all the fields";
-		if(this.registerForm.get('username').touched &&
+
+		if( (!this.registerForm.get('username').touched) || (this.registerForm.get('username').touched &&
 			!this.registerForm.get('username').valid &&
-			!this.registerForm.get('username').errors?.emailFormat){
+			!this.registerForm.get('username').errors?.emailFormat) ){
 			message = 'Please enter your email';
 		}
 		else if(this.registerForm.get('username').errors?.emailFormat){
 			message = "Email should be valid";
 		}
-		else if(this.registerForm.get('passwordGroup').get('password').touched &&
-			this.registerForm.get('passwordGroup').get('password').value.trim() == "" ){
+		else if( (!this.registerForm.get('passwordGroup').get('password').touched)
+				|| (this.registerForm.get('passwordGroup').get('password').touched &&
+			this.registerForm.get('passwordGroup').get('password').value.trim() == "" )){
 			message = "Please enter your password";
 		}
-		else if(this.registerForm.get('passwordGroup').get('password').touched && 
-		this.registerForm.get('passwordGroup').get('password').errors?.pwdFormat ){
+		else if(this.registerForm.get('passwordGroup').get('password').errors?.pwdFormat ){
 			message = "Minimum six characters, at least one letter and one number"
 		}
-		else if(this.registerForm.get('passwordGroup').get('confirmPassword').touched &&
-			this.registerForm.get('passwordGroup').get('confirmPassword').value.trim() == ""){
+		else if(
+			(!this.registerForm.get('passwordGroup').get('confirmPassword').touched)
+			|| (this.registerForm.get('passwordGroup').get('confirmPassword').touched &&
+			this.registerForm.get('passwordGroup').get('confirmPassword').value.trim() == "") ){
 			message = "Please enter confirm password";
 		}
 		else if(this.registerForm.get('passwordGroup').errors?.match){
-			message = "Password does not match";
+			message = "Password & Confirm Password does not match";
 		}
 		
-		console.log(this.registerForm.get('passwordGroup').get('password').errors)
+		console.log('testtetttttt', this.registerForm.get('passwordGroup').get('password').errors)
 		window.toastNotification(message);
 	}
 	// function fire on sign-up button click
@@ -102,9 +105,8 @@ export class SignupComponent implements OnInit {
 					}
 				},
 				(error) => {
-					this.buttonText = 'Sign Up';
-					this.errorMessage = error.message || 'Server Error';
-					
+					this.errorMessage = error && error.error ? error.error.message : 'Server Error';
+					console.log(error);
 					window.toastNotification(this.errorMessage);
 					this.isDisabled = false;
 				}

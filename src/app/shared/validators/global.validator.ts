@@ -40,8 +40,7 @@ export class GlobalValidator {
 
   static passwordFormatCheck(control): ValidationResult {
     const PWD_REGEXP: RegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/i;
-
-    if ( control.touched && !PWD_REGEXP.test(control.value)) {
+    if ( !PWD_REGEXP.test(control.value)) {
        return { 'pwdFormat': true };;
     }
 
