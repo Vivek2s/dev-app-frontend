@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 	isDisabled: boolean = false;
 	isResendError: boolean = false;
 	visiblePassword: boolean;
+	loginSSO:boolean = false;
 	// variables end
 
 	constructor(
@@ -48,7 +49,8 @@ export class LoginComponent implements OnInit {
 
 		this.loginForm = this._fb.group({
 			username: [ '', Validators.compose([ Validators.required, GlobalValidator.emailFormat ]) ],
-			password: [ '', Validators.required ]
+			password: [ '', Validators.required ],
+			organisation: [ '']
 		});
 	}
 
@@ -122,5 +124,20 @@ export class LoginComponent implements OnInit {
 	login(){
 		jQuery('#login-form').removeClass('slide-up')
 		jQuery('#signup-form').addClass('slide-up')
+	}
+
+	async ssoLogin(){
+		console.log(this.loginForm.get('organisation').value, "value");
+		let org = this.loginForm.get('organisation').value;
+		if(!org)
+			return;
+
+		let organisation =	await this._signupLoginService.sso(org);
+		if(!organisation.sso)
+			console.log("Organisation Not Found");
+
+		window.location = "http://localhost:4000/login/sso/"+org;
+
+		
 	}
 }

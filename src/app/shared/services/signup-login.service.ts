@@ -23,4 +23,10 @@ export class SignupLoginService extends BaseService {
 			.post(this._url + '/oauth/login', data, this.post_options('auth'))
 			.pipe(map(this.extractAuthData), catchError(this.handleAuthError));
 	}
+
+	sso(orgId){
+		return this._http
+			.get(this._url + `/sso/organisation/${orgId}`, this.get_options())
+			.pipe(map(this.extractData), catchError(this.handleError)).toPromise();
+	}
 }

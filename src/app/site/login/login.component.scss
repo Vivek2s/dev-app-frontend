@@ -131,3 +131,13 @@
         -webkit-transition: all .3s ease;
     }
 }
+
+.login-sso {
+    position: absolute;
+    bottom: 10%;
+    left: 35%;
+}
+
+.login-sso a{
+    color: rgba(0, 0, 0, 0.4);
+}
