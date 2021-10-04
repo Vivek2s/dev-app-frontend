@@ -5,8 +5,8 @@ import { SharedModule } from './../../shared/shared.module';
 import { ProfileComponent } from './profile.component';
 //import { HOME_ROUTES } from './../../config/routes/home.route';
 import { SharedComponentModule } from './../../shared/component/shared-component.module';
-import { SignupModule } from '../signup/signup.module';
-import { LoginModule } from '../login/login.module';
+import { SignupModule } from '../auth/signup/signup.module';
+import { LoginModule } from '../auth/login/login.module';
 
 export const BOOT_ROUTES: Routes = [
   {

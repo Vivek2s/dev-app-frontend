@@ -16,13 +16,21 @@ export const BOOT_ROUTES: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/site/home/home.module').then(m => m.HomeModule),
-        canActivate: [LoginGuard]
+        loadChildren: () => import('src/app/site/home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'profile',
-        loadChildren: () => import('src/app/site/profile/profile.module').then(m => m.ProfileModule),
-        canActivate: [AuthGuard]
+        loadChildren: () => import('src/app/site/profile/profile.module').then(m => m.ProfileModule)
+      },
+      {
+        path: 'signup',
+        loadChildren: () => import('src/app/site/auth/signup/signup.module').then(m => m.SignupModule),
+        canActivate: [LoginGuard]
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('src/app/site/auth/login/login.module').then(m => m.LoginModule),
+        canActivate: [LoginGuard]
       },
       {
         path:'**',

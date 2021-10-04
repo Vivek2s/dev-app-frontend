@@ -1,0 +1,49 @@
+<!-- <div class="signup slide-up" id="signup-form" [formGroup]="registerForm" autocomplete="off">
+    <h2 class="form-title" id="signup" (click)="signup()"><span>or</span>Sign up</h2>
+    <div class="form-holder">
+        <input type="email" class="input" placeholder="Email" formControlName="username"/>
+        <ng-container formGroupName="passwordGroup">
+            <input type="password" class="input" placeholder="Confirm Password" formControlName="password" />
+            <input type="password" class="input" placeholder="Password" formControlName="confirmPassword"/>
+        </ng-container>
+    </div>
+    <button class="submit-btn" [ngClass]="{'progress': isDisabled}" [disabled]="isDisabled" (click)="onSignup()">Sign up</button>
+</div> -->
+
+
+<section class="account-section bg_img" data-background="assets/images/account/account-bg.jpg">
+    <div class="container">
+        <div class="padding-top padding-bottom">
+            <div class="account-area">
+                <div class="section-header-3">
+                    <span class="cate">welcome</span>
+                    <h2 class="title">to IPL Ticket Booking </h2>
+                    <p class="error-msg" *ngIf="isError">{{errorMessage}}</p>
+                </div>
+                <form class="account-form" [formGroup]="registerForm" autocomplete="off">
+                    <div class="form-group">
+                        <label for="email1">Email<span>*</span></label>
+                        <input type="text" formControlName="username" placeholder="Enter Your Email" id="email1" required>
+                    </div>
+                    <ng-container formGroupName="passwordGroup">
+                    <div class="form-group">
+                        <label for="pass1">Password<span>*</span></label>
+                        <input type="password" formControlName="password" placeholder="Password" id="pass1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass2">Confirm Password<span>*</span></label>
+                        <input type="password"  formControlName="confirmPassword" placeholder="Password" id="pass2" required>
+                    </div>
+                    </ng-container>
+                    <div class="form-group text-center">
+                        <input type="button" value="Sign Up" [disabled]="isDisabled" (click)="onSignup()">
+                    </div>
+                </form>
+                <div class="option">
+                    Already have an account? <a href="javascript:void(0)" routerLink="/login">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Sign-In-Section========== -->

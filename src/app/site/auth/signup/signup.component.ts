@@ -1,17 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter, NgZone } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { GlobalValidator } from '../../shared/validators/global.validator';
+import { GlobalValidator } from '../../../shared/validators/global.validator';
 import { CookieService } from 'src/app/shared/services/cookie.service';
 import { ScriptService } from 'src/app/shared/services/script.service';
-import { SignupLoginService } from '../../shared/services/signup-login.service';
+import { SignupLoginService } from '../../../shared/services/signup-login.service';
 import { Router } from '@angular/router';
 
 declare var jQuery: any;
 declare var window: any;
 @Component({
 	selector: 'app-signup',
-	templateUrl: './signup.component.html',
-	styleUrls: [ './signup.component.scss' ]
+	templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit {
 
@@ -82,7 +81,11 @@ export class SignupComponent implements OnInit {
 		}
 		
 		console.log('testtetttttt', this.registerForm.get('passwordGroup').get('password').errors)
-		window.toastNotification(message);
+		if(message){
+			this.errorMessage = message;
+			this.isError = true;
+			window.toastNotification(message);
+		}
 	}
 	// function fire on sign-up button click
 	onSignup() {
@@ -132,7 +135,7 @@ export class SignupComponent implements OnInit {
 				user: response.user
 			};
 			this._cookieService.createCookie('storage', cookie, response.expires_in, 'object');
-			this.zone.run(() => this._router.navigate([ '/profile' ]));
+			this.zone.run(() => this._router.navigate([ '' ]));
 			this.isDisabled = false;
 		} catch (error) {
 			console.log(error);

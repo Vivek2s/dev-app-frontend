@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, NgZone } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { GlobalValidator } from '../../shared/validators/global.validator';
+import { GlobalValidator } from '../../../shared/validators/global.validator';
 import { CookieService } from 'src/app/shared/services/cookie.service';
 import { ScriptService } from 'src/app/shared/services/script.service';
-import { SignupLoginService } from '../../shared/services/signup-login.service';
+import { SignupLoginService } from '../../../shared/services/signup-login.service';
 import { Router } from '@angular/router';
 
 declare var jQuery: any;
@@ -70,8 +70,11 @@ export class LoginComponent implements OnInit {
 		}
 		
 		console.log('message')
-		if(message)
+		if(message){
+			this.errorMessage = message;
+			this.isError = true;
 			window.toastNotification(message);
+		}
 	}
 	// function call on login button
 	onLogin() {
@@ -100,7 +103,7 @@ export class LoginComponent implements OnInit {
 					this.isDisabled = false;
 					this._cookieService.createCookie('storage', cookie, response.expires_in, 'object');
 
-					this.zone.run(() => this._router.navigate([ '/profile' ]));
+					this.zone.run(() => this._router.navigate([ '' ]));
 				}
 			},
 			(error) => {
@@ -120,7 +123,6 @@ export class LoginComponent implements OnInit {
 	}
 
 	login(){
-		jQuery('#login-form').removeClass('slide-up')
-		jQuery('#signup-form').addClass('slide-up')
+		
 	}
 }

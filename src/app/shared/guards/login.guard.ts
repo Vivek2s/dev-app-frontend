@@ -14,8 +14,7 @@ export class LoginGuard implements CanActivate {
         if (cookie == null) {
             return true;
         }
-        console.log('..................profile....')
-        this._router.navigate(['/profile']);
+        this._router.navigate(['']);
         return false;
     }
 }
