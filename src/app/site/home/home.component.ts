@@ -1,27 +1,19 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CookieService } from '../../shared/services/cookie.service';
-
-import { AppStateStore } from '../../shared/store/app-state.store';
-declare var jQuery, $, window;
 @Component({
 	selector: 'app-home',
-	templateUrl: './home.component.html',
-	styleUrls: [ './home.component.scss' ]
+	templateUrl: './home.component.html'
 })
 export class HomeComponent {
-	// vraibles start
+	// varaibles start
+	iplEventsBySeason = [];
 
-	constructor( 
-		private _cookieService: CookieService,
-		private _appStateStore: AppStateStore
+	constructor(
 	) {
 		
 	}
 
 	ngOnInit() {
 		console.clear();
-
-	//	this._appStateStore.getStateByKey('storage');
 	}
 
 	ngOnDestroy() {

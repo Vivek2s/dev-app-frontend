@@ -9,6 +9,6 @@ import { AuthGuard } from './../../shared/guards/auth.guard';
 
 const routing: Routes = [ ...SITE_ROUTES ];
 
-export const routes: ModuleWithProviders = RouterModule.forRoot(routing, { scrollPositionRestoration: 'enabled' });
+export const routes: ModuleWithProviders = RouterModule.forRoot(routing, { scrollPositionRestoration: 'enabled', onSameUrlNavigation: 'reload' });
 
 export const APP_ROUTER_PROVIDERS = [LoginGuard, AuthGuard];

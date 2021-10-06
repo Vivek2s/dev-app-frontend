@@ -14,10 +14,21 @@ export class HeaderComponent implements OnInit {
     storageCookie:any
     constructor(
         private _cookieService: CookieService,
+        private _router: Router
     ){}
 
     ngOnInit(){
         this.storageCookie = this._cookieService.readCookie('storage', true);
         console.log(this.storageCookie)
     }
+
+    logout(){
+        //this._cookieService.eraseCookie(['storage']);
+        console.log('......reload...')
+        const currentUrl = this._router.url;
+		this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            console.log('....hjhjhjhj', currentUrl)
+            this._router.navigate([currentUrl]);
+        });
+	}
 }

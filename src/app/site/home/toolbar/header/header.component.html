@@ -8,8 +8,9 @@
                 </a>
             </div>
             <ul class="menu">
-                <li class="header-button pr-0" *ngIf="!storageCookie">
-                    <a href="javascript:void(0)" routerLink="/login">join us</a>
+                <li class="header-button pr-0">
+                    <a *ngIf="!storageCookie" href="javascript:void(0)" routerLink="/login">join us</a>
+                    <a *ngIf="storageCookie" href="javascript:void(0)" (click)="logout()">Logout</a>
                 </li>
             </ul>
             <div class="header-bar d-lg-none">
