@@ -22,7 +22,7 @@ export const BOOT_ROUTES: Routes = [
       {
         path: 'profile',
         loadChildren: () => import('src/app/site/profile/profile.module').then(m => m.ProfileModule),
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
       },
       {
         path:'**',
